@@ -48,7 +48,7 @@ namespace Taschenrechner
         {
             var flag = 1;
             List<int> output = new List<int>();
-            for (int i = bottom; i < top; i++)
+            for (int i = top; i < bottom; i++)
             {
                 if (i == 1 || i == 0)
                     continue;

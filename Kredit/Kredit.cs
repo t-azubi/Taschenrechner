@@ -62,9 +62,9 @@ namespace Taschenrechner
             double Monatsrate = tempresult * Kreditbetrag / (12 * Laufzeit);
             double Zinsen_gesamt = tempresult * Kreditbetrag -Kreditbetrag;
 
-            SetResultInParent($"({Kreditbetrag} * (1+ {Zinshöhe}/100)^{Laufzeit} Jahre /12 = {Monatsrate}");
-            SetResultInParent($"Kreditbetrag: {Kreditbetrag}, Zinssatz: {Zinshöhe}, Laufzeit: {Laufzeit} Jahre");
-            SetResultInParent($"Ratenhöhe (monatlich):  {Monatsrate} Zinsen insgesamt: {Zinsen_gesamt}");
+            SetResultInParent($"(({Kreditbetrag} * (1+ {Zinshöhe}/100))^{Laufzeit} Jahre) /12 = {Monatsrate}");
+            SetResultInParent($"Kreditbetrag: {Kreditbetrag}€, Zinssatz: {Zinshöhe}, Laufzeit: {Laufzeit} Jahre");
+            SetResultInParent($"Ratenhöhe (monatlich): {Monatsrate}€ Zinsen insgesamt: {Zinsen_gesamt}€");
         }
 
         private void Btn_Ratenhöhekredit_Click(object sender, EventArgs e)
@@ -83,14 +83,7 @@ namespace Taschenrechner
             double counter = 0;
             double zins = (1 + Zinshoehe / 100);
             double Kreditbetrag1 = Kreditbetrag;
-            do
-            {
-                Kreditbetrag = (Kreditbetrag - Ratenhoehe) * zins;
-                counter++;
-            }
-            while ( Kreditbetrag > Ratenhoehe );
-            
-            double Laufzeit = counter + Kreditbetrag/Ratenhoehe;
+            double Laufzeit = Kreditbetrag/Ratenhoehe;
 
        
             double tempresult = new MathCalc().Power(zins, Laufzeit);
@@ -101,7 +94,7 @@ namespace Taschenrechner
 
             //SetResultInParent($"({Kreditbetrag} * {Zinshöhe}/100 *{Laufzeit}/12 + {Kreditbetrag}) / {Laufzeit} = {result}");
             SetResultInParent($"Kreditbetrag: {Kreditbetrag1}, Zinssatz: {Zinshoehe}, Ratenhöhe: (monatlich) {Ratenhoehe}");
-            SetResultInParent($"Laufzeit: {Laufzeit} Jahre, Zinsen (gesamt): {Zinsen_gesamt}");
+            SetResultInParent($"Laufzeit: {Laufzeit} Jahre, Zinsen + Kredit (gesamt): {Zinsen_gesamt}");
         }
     }
 }
