@@ -17,8 +17,10 @@ namespace Taschenrechner
         private GrundrechnerForm GrundrechnerForm = new GrundrechnerForm();
         public delegate void AdviseParentEventHandler(string text);
         public event AdviseParentEventHandler AdviseParent = delegate { };
-        public EingabeForm()
+        public bool notSchool;
+        public EingabeForm( bool notschool = true)
         {
+            notSchool = notschool;
             InitializeComponent();
             GrundrechnerForm.AdviseParent += new GrundrechnerForm.AdviseParentEventHandler(SetFromForm2);
             new Button().Click += Add_Click;
@@ -27,10 +29,15 @@ namespace Taschenrechner
         private void Add_Click(object sender, EventArgs e)
         {
             Equation += ((Button)(sender)).Text;
+           
+            if (notSchool && (Regex.Match(Equation, @"[,]{2,}").Success || Regex.Match(Equation, @"[\d]+[,][\d]+[,]").Success))
+            {
+                MessageBox.Show("Fehler in der Eingabe!", "Error");
+                Equation = string.Empty;
+            }
             if (Regex.Match(Equation, @"[-]{2,}").Success ||
-               Regex.Match(Equation, @"[,]{2,}").Success ||
+               Regex.Match(Equation, @"[,,]{2,}").Success  ||
                Regex.Match(Equation, @"[-]{2,}").Success ||
-               Regex.Match(Equation, @"[\d]+[,][\d]+[,]").Success ||
                Regex.Match(Equation, @"^[,][\d]+").Success)
             {
                 MessageBox.Show("Fehler in der Eingabe!", "Error");

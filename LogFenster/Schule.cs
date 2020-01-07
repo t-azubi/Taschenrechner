@@ -13,9 +13,8 @@ namespace Taschenrechner
     {
         public string helper = string.Empty;
         public List<string> output = new List<string>();
-        private EingabeForm eingabeForm = new EingabeForm();
+        private EingabeForm eingabeForm = new EingabeForm(false);
         public delegate void AdviseParentEventHandler(string text);
-        public bool stop = false;
         private void ShowMessage(string Message)
         {
             MessageBox.Show(Message, "Noteneingabe");
@@ -23,16 +22,10 @@ namespace Taschenrechner
         }
         public void SetFromForm2(string result)
         {
-            if (Regex.Match(result, @"[,]{2,}").Success)
-            {
-                MessageBox.Show("Deine Eingabe war fehlerhaft!", "Fehlerhafte Eingabe");
-                stop = true;
-            }
             helper = result;
         }
         public List<string> StartModule(Font font, Color foreColor, Color backColor)
         { 
-            stop = false;
             eingabeForm.Font = font;
             eingabeForm.BackColor = backColor;
             eingabeForm.ForeColor = foreColor;
@@ -54,7 +47,7 @@ namespace Taschenrechner
             var Noten = helper.Split(seperator);
 
 
-            if (stop || (Noten.Length == 1 && Noten[0] == ""))
+            if ((Noten.Length == 1 && Noten[0] == ""))
             {
                 return output;
             }

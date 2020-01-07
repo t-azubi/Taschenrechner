@@ -28,7 +28,7 @@ namespace Taschenrechner
                 {
                     button.Enabled = false;
                 }
-                else if (button.Text == "-" || button.Text == ",")
+                else if (button.Text == "-" || button.Text == "," || button.Text == "Nebenrechnung")
                 {
                     button.Enabled = false;
                 }
@@ -68,7 +68,7 @@ namespace Taschenrechner
                 {
                     button.Enabled = false;
                 }
-                else if (button.Text == "-" || button.Text == ",")
+                else if (button.Text == "-" || button.Text == "," || button.Text == "Nebenrechnung")
                 {
                     button.Enabled = false;
                 }
@@ -108,7 +108,7 @@ namespace Taschenrechner
                 {
                     button.Enabled = false;
                 }
-                else if (button.Text == "-" || button.Text == ",")
+                else if (button.Text == "-" || button.Text == "," || button.Text == "Nebenrechnung")
                 {
                     button.Enabled = false;
                 }
@@ -143,7 +143,7 @@ namespace Taschenrechner
 
             foreach (var button in eingabeForm.Controls.OfType<Button>())
             {
-                if (button.Text == "-" || button.Text == ",")
+                if (button.Text == "-" || button.Text == "," || button.Text == "Nebenrechnung")
                 {
                     button.Enabled = false;
                 }
